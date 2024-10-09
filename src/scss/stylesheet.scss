@@ -1,0 +1,326 @@
+/* TODO: Apply at least 5 scss variables*/
+$title-color: #324360;
+$navigation-color: #111111;
+$hovernav-color: #35c4ce;
+$footer-color: #989898;
+$font-family-header: 'Josefin Sans', sans-serif;
+$text-uppercase: uppercase;
+$flex-display: flex; 
+
+/* TODO: Apply at least 2 mixins*/
+// Mixin for transitions
+@mixin transition($attribute, $time, $ease) {
+  transition: $attribute $time $ease;
+}
+
+// Mixin for flexbox centering
+@mixin flex-justify {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Mixin for margin
+@mixin margin($margintop, $marginbottom) {
+  margin-top: $margintop;
+  margin-bottom: $marginbottom;
+}
+
+/* TODO: Apply at least 5 nestings*/
+
+/////////////////////////////////////////
+
+
+body {
+    font-family: Quando;
+    font-size: 15px;
+    color: #787878;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+p {
+    margin-bottom: 25px;
+    line-height: 1.6em;
+}
+a {
+    font-weight: 400;
+    text-decoration: none;
+    color: $navigation-color;
+    transition: .20s;
+}
+a:hover {
+    color: #999999;
+}
+// Nesting tags inside heading
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    @include margin(25px, 20px);
+    font-family: $font-family-header;
+    font-weight: 400;
+    line-height: 1.3em;
+    word-wrap: break-word;
+    color: $navigation-color;
+
+    h1 {
+        font-size: 37px;
+    }
+    h2 {
+        font-size: 31px;
+    }
+    h3 {
+        font-size: 26px;
+    }
+    h4 {
+        font-size: 21px;
+    }
+    h5 {
+        font-size: 18px;
+    }
+    h6 {
+        font-size: 15px;
+    }
+}
+
+.container {
+    width: 94%;
+    margin: 0 auto;
+}
+
+// Nesting tags inside header
+/* header and main nav */
+header {
+    font-family: $font-family-header;
+
+    nav {
+        ul {
+            display: none;
+        }
+    }
+}
+
+.top-logo {
+    width: 200px;
+    margin: 20px auto 40px;
+}
+
+
+
+/* posts */
+article {
+    margin-bottom: 50px;
+    display: $flex-display;
+    flex-wrap: wrap;
+}
+.image-part {
+    margin-bottom: 10px;
+}
+
+// Nesting tags inside .post-title
+.post-title {
+  margin-top: 0;
+
+  a {
+    color: $title-color;
+    text-transform: $text-uppercase;
+    font-size: 26px;
+    font-weight: 900;
+    @include margin(15px, 15px);
+    line-height: 1.3em;
+    @include transition(all, 0.3s, ease);
+
+    &:hover {
+      color: $hovernav-color;
+    }
+  }
+}
+
+
+/* footer */
+footer {
+    padding: 30px 0;
+    text-align: center;
+    background: #eaf2ff;
+    color: $footer-color;
+}
+#footer a {
+    color:$footer-color;
+}
+#footer a:hover {
+    color: $navigation-color;
+}
+.footer-logo {
+    width: 200px;
+    margin: 20px auto;
+    text-align: center;
+    vertical-align: middle;
+}
+
+// Nesting tags inside .footer-social-links
+.footer-social-links {
+  padding: 20px 0;
+  line-height: 2em;
+
+  a {
+    margin: 0 10px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: $text-uppercase;
+
+    span {
+      display: none;
+    }
+  }
+}
+
+#footer-copyright {
+    padding: 20px 0;
+    font-size: 12px;
+    color: $footer-color;
+}
+
+
+@media only screen and (min-width: 650px) {
+    .container {
+        width: 90%;
+    }
+    // Nesting tags inside header
+    header {
+        nav {
+          max-width: 1170px;
+          margin: 0 auto;
+          @include flex-justify;
+          height: 60px;
+      
+          ul {
+            display: $flex-display;
+      
+            li {
+              margin: 0 15px;
+              position: relative;
+              line-height: 24px;
+      
+              a {
+                font-family: $font-family-header;
+                color: $title-color;
+                letter-spacing: 1px;
+                text-transform: $text-uppercase;
+                font-size: 12px;
+                font-weight: 900;
+      
+                &:hover {
+                  color: $hovernav-color;
+                }
+              }
+      
+              &.menu-item-has-children > a::after {
+                margin-left: 7px;
+                font-family: 'FontAwesome';
+                font-size: 13px;
+                color: $title-color;
+                content: '\f078';
+              }
+      
+              &.current-menu-item a {
+                border-bottom: 2px solid $title-color;
+              }
+            }
+          }
+        }
+    }
+
+    /* sub nav */
+    // Nesting tags inside header
+    header {
+        nav {
+          ul {
+            ul {
+              visibility: hidden;
+              opacity: 0;
+              display: block;
+              position: absolute;
+              z-index: 9999;
+              left: 0;
+              background: #f0f0f0;
+              @include transition(all, 0.2s, ease-out);
+      
+              li {
+                border-top: 1px solid #e9e9e9;
+                margin: 0;
+      
+                a {
+                  display: block;
+                  color: $navigation-color;
+                  min-width: 175px;
+                  margin: 0;
+                  padding: 20px 10px;
+                  line-height: 1.4em;
+                  letter-spacing: 1px;
+                  transition: .35s;
+      
+                  &:hover {
+                    background: #ffffff;
+                    color: #000;
+                  }
+                }
+              }
+            }
+      
+            li:hover {
+              ul {
+                visibility: visible;
+                opacity: 1;
+              }
+            }
+          }
+        }
+    }
+
+    /* posts */
+    article {
+        display: $flex-display;
+    }
+
+    // Nesting tags inside .image-part
+    .image-part {
+        flex: 1;
+        overflow: hidden;
+        margin-bottom: 0;
+      
+        img {
+          @include transition(transform, 3.5s, ease-in-out);
+      
+          &:hover {
+            transform: scale(1.5, 1.5);
+          }
+        }
+    }
+
+    .content-part {
+        flex: 1;
+        padding-left: 50px;
+    }
+
+
+    /* footer */
+    // Nesting tags inside .footer-social-links
+    .footer-social-links {
+        a {
+          margin: 0 28px;
+      
+          span {
+            display: inline;
+            font-size: 11px;
+          }
+      
+          i {
+            margin-right: 5px;
+          }
+        }
+    }
+}
